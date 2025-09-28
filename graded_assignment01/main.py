@@ -122,7 +122,7 @@ def main(args):
 
         opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=5e-5)
 
-        scheduler = ReduceLROnPlateau(opt, 'max', factor=0.25, patience=5, verbose=True, threshold=0.0001, cooldown=2,
+        scheduler = ReduceLROnPlateau(opt, 'max', factor=0.25, patience=5, threshold=0.0001, cooldown=2,
                                       min_lr=1e-7)
 
         criterion = PHOSCLoss()
@@ -140,8 +140,8 @@ def main(args):
                     mx_acc = acc
 
                     # removes previous best weights
-                    if os.path.exists(f'{args.model}/epoch{best_epoch}.pt'):
-                        os.remove(f'{args.model}/epoch{best_epoch}.pt')
+                    #if os.path.exists(f'{args.model}/epoch{best_epoch}.pt'):
+                    #    os.remove(f'{args.model}/epoch{best_epoch}.pt')
 
                     best_epoch = epoch
 
